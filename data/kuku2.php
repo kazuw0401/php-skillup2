@@ -23,10 +23,8 @@
                 }else {
                     ?>
                     <td><?php echo $i * $j; ?></td>
-                    <?
+                    <?php
                 }
-            ?>
-        <?php
             }
             echo '<br>';
         }
