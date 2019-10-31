@@ -1,5 +1,6 @@
 FROM php:7.2-fpm
-RUN apt-get update
+RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+    apt-get update
 RUN apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -10,4 +11,5 @@ RUN apt-get install -y \
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-enable pdo_mysql
 ADD ./php.ini /usr/local/etc/php/php.ini
+ADD ./tmp /usr/local/etc/php/tmp
 
