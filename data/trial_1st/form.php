@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -14,12 +15,12 @@
         <p>
 			お名前：
             <select name="name" id="">
-				<option value="president">社長</option>
-				<option value="suzuki">鈴木さん（営業チーム）</option>
-				<option value="takahashi">高橋さん（経理チーム）</option>
-				<option value="sales_yamada">山田さん（営業チーム）</option>
-				<option value="takahashi">中村さん（経理チーム）</option>
-				<option value="general_yamada">山田さん（総務チーム）</option>
+				<option value="0">社長</option>
+				<option value="1">鈴木さん（営業チーム）</option>
+				<option value="2">高橋さん（経理チーム）</option>
+				<option value="3">山田さん（営業チーム）</option>
+				<option value="4">中村さん（経理チーム）</option>
+				<option value="5">山田さん（総務チーム）</option>
 			</select>
 		</p>
 		<p>
