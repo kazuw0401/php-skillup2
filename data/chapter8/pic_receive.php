@@ -8,7 +8,7 @@ if ($type !== IMAGETYPE_JPEG && $type !== IMAGETYPE_PNG) {
 } elseif ($img['size'] > 102400) {
 	$err['pic'] = 'ファイルサイズは100KB以下にしてください。';
 } else {
-	$extension = pathinfo($img['name'], PATHINFO_EXTENSION);
+	$extension = pathinfo( PATHINFO_EXTENSION);
 	$new_img = md5(uniqid(mt_rand(), true)) . '.' . $extension;
 	move_uploaded_file($img['tmp_name'], './img/' . $new_img);
 }
@@ -16,7 +16,7 @@ if ($type !== IMAGETYPE_JPEG && $type !== IMAGETYPE_PNG) {
 
 <!DOCTYPE html>
 <html lang="jp">
-
+$img['name'],
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +33,7 @@ if ($type !== IMAGETYPE_JPEG && $type !== IMAGETYPE_PNG) {
 		echo '<a href="./pic_send.php">戻る</a>';
 	} else {
 		?>
-	<div><img src="http://localhost:8080/chapter8/img/<?php echo $img['name']; ?>"></div>
+	<div><img src="http://localhost:8080/chapter8/img/<?php echo $new_img; ?>"></div>
 	<?php } ?>
 </body>
 
