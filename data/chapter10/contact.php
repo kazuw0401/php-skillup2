@@ -4,6 +4,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $inquiry = $_POST['inquiry'];
 
+    $pattern = '/\A(a-z0-9_\-\+\/\?]+)';
+    $pattern .= '@(a-z0-9\-]+\.)+[a-z]{2,6}\z/i';
+
     // POSTデータのバリデーション
     // データベースへデータを挿入
     // 確認メールを送信
