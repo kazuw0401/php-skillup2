@@ -1,2 +1,6 @@
 .DS_Store
 /data/chapter8/img/*
+data/chapter10/access.log
+data/chapter10/mail_basic.php
+data/chapter10/mail_advanced.php
+php-fpm/php.ini
