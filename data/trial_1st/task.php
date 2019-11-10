@@ -1,137 +1,121 @@
 <?php
 
-$postId = htmlspecialchars($_POST['postId'], ENT_QUOTES, 'UTF-8');
-$postPassword = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
+
+// POSTされた値
+$id = $_POST['id'];
+$password = $_POST['password'];
+
+// 表示させたいものでなければhtmlspecialcharsを使う必要はない
+// $postId = htmlspecialchars($_POST['postId'], ENT_QUOTES, 'UTF-8');
+// $postPassword = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
 
 // 社員データが入った配列
 $users = array(
-
-	0 => array(
+	'u0' => array(
 		'id' => 0,
 		'name' => '社長',
 		'password' => '1234',
 	),
-	1 => array(
+	'u1' => array(
 		'id' => 1,
-		'name' => '鈴木さん（営業チーム）',
-		'task' => array('A社訪問', 'B社資料送付'),
+		'name' => '鈴木（営業チーム）',
 		'password' => '1111',
 	),
-	2 => array(
+	'u2' => array(
 		'id' => 2,
-		'name' => '高橋さん（経理チーム）',
-		'task' => array('帳簿処理', '請求書発行'),
+		'name' => '高橋（経理チーム）',
 		'password' => '2222',
 	),
-	3 => array(
+	'u3' => array(
 		'id' => 3,
-		'name' => '山田さん（営業チーム）',
-		'task' => array('C社訪問', 'D社資料送付', 'E社資料送付'),
+		'name' => '山田（営業チーム）',
 		'password' => '3333',
 	),
-	4 => array(
+	'u4' => array(
 		'id' => 4,
-		'name' => '中村さん（経理チーム）',
-		'task' => array('請求書発行', '先月の締め'),
+		'name' => '中村（経理チーム）',
 		'password' => '4444',
 	),
-	5 => array(
+	'u5' => array(
 		'id' => 5,
-		'name' => '山田さん（総務チーム）',
-		'task' => array('求人開始', '退職予定者の処理作業'),
+		'name' => '山田（総務チーム）',
 		'password' => '5555',
 	),
 );
 
+
+
 // タスクの配列
 $tasks = array(
-	0 => array(''),
-	1 => array('A社訪問', 'B社資料送付'),
-	2 => array('帳簿処理', '請求書発行'),
-	3 => array('C社訪問', 'D社資料送付', 'E社資料送付'),
-	4 => array('請求書発行', '先月の締め'),
-	5 => array('求人開始', '退職予定者の処理作業'),
+	'u1' => array(
+		'id' => 1,
+		'name' => '鈴木',
+		'task' => array('A社訪問', 'B社資料送付')
+	),
+	'u2' => array(
+		'id' => 2,
+		'name' => '高橋（経理チーム）',
+		'task' => array('帳簿処理', '請求書発行')
+	),
+	'u3' => array(
+		'id' => 3,
+		'name' => '山田（営業チーム）',
+		'task' => array('C社訪問', 'D社資料送付', 'E社資料送付')
+	),
+	'u4' => array(
+		'id' => 4,
+		'name' => '中村（経理チーム）',
+		'task' => array('請求書発行', '先月の締め')
+	),
+	'u5' => array(
+		'id' => 5,
+		'name' => '山田（総務チーム）',
+		'task' => array('求人開始', '退職予定者の処理作業')
+	),
 );
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>タスク一覧</title>
+</head>
+<body>
+	<h1>タスク一覧</h1>
+	<?php
 
 
-// 入力された名前とパスワードが一致していた場合、タスクを表示
-if ($users[1]['id'] == $postId && $users[1]['password'] == $postPassword) { ?>
-	<p><?php echo $data[1]['name']; ?>さんのタスク一覧</p>
-<?php
-	foreach ($users as $key => $user) {
-		echo $user[1] . '<br>';
+// 入力された名前とパスワードが一致してしているかを判定
+foreach ($users as $key => $user) {
+	if ($id == $user['id'] && $password == $user['password']) {
+		if ($id == 0) { ?>
+		<p><?php echo $user['name']; ?>さんのタスク</p>
+		<?php
+		// 社長がログインした場合、全社員のタスクを見られるよう実装
+		foreach($tasks as $all_usertask) {
+			echo $all_usertask['name'].'<br>';
+			foreach($all_usertask['task'] as $usertask) {
+				echo $usertask.'<br>';
+			}
+		}
+		} else { ?>
+			<!-- ログインした社員ごとのタスクを表示 -->
+			<p><?php echo $user['name']; ?>さんのタスク</p>
+			<p>タスク一覧</p>
+			<?php
+			// タスクを全て抽出して表示
+			foreach($tasks[$key]['task'] as $task) {
+				echo $task . '<br>';
+			} 
+		}
+	}elseif($id == $user['id'] && $password != $user['password']) {
+		echo 'パスワードが違います。';
 	}
-} else {
-	echo 'パスワードが違います。';
-	// echo $tasks[1].'<br>';
 }
+?>
 
-
-
-// $postId = htmlspecialchars($_POST['postId'], ENT_QUOTES, 'UTF-8');
-// $postPassword = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
-
-// // 社員データが入った配列
-// $data = array(
-	
-// 	0 => array(
-// 		'id' => 0,
-// 		'name' => '社長',
-// 		'password' => '1234',
-// 	),
-// 	1 => array(
-// 		'id' => 1,
-// 		'name' => '鈴木さん（営業チーム）',
-// 		'password' => '1111',
-// 	),
-// 	2 => array(
-// 		'id' => 2,
-// 		'name' => '高橋さん（経理チーム）',
-// 		'password' => '2222',
-// 	),
-// 	3 => array(
-// 		'id' => 3,
-// 		'name' => '山田さん（営業チーム）',
-// 		'password' => '3333',
-// 	),
-// 	4 => array(
-// 		'id' => 4,
-// 		'name' => '中村さん（経理チーム）',
-// 		'password' => '4444',
-// 	),
-// 	 5 => array(
-// 		'id' => 5,
-// 		'name' => '山田さん（総務チーム）',
-// 		'password' => '5555',
-// 	),
-// );
-
-// // タスクの配列を格納
-// $tasks = array(
-// 	0 => array(''),
-// 	1 => array('A社訪問', 'B社資料送付'),
-// 	2 => array('帳簿処理', '請求書発行'),
-// 	3 => array('C社訪問', 'D社資料送付', 'E社資料送付'),
-// 	4 => array('請求書発行', '先月の締め'),
-// 	5 => array('求人開始', '退職予定者の処理作業'),
-// );
-
-// // 入力された名前とパスワードが一致していた場合、タスクを表示
-// if($data[1]['id'] == $postId && $data[1]['password'] == $postPassword) { 
-// 	<p><?php echo $data[1]['name']; さんのタスク一覧</p>
-// 	
-// 	foreach($tasks as $task => $value) { 
-// 		echo $value[1].'<br>';
-// 	}
-// } else {
-// 		echo 'パスワードが違います。';
-	// echo $tasks[1].'<br>';
-// }
-
-// foreach($tasks as $task => $value) {
-// 	echo $value;
-// }
-
-
-//  echo $data[1]['name'].'<br>';
-//  echo $tasks[1][1].'<br>';
+</body>
+</html>
