@@ -15,7 +15,7 @@
 	<form action="./task.php" method="post">
 		<p>
 			お名前：
-			<select name="postId" id="">
+			<select name="id">
 				<option value="0">社長</option>
 				<option value="1">鈴木さん（営業チーム）</option>
 				<option value="2">高橋さん（経理チーム）</option>
@@ -25,7 +25,7 @@
 			</select>
 		</p>
 		<p>
-			パスワード：<input type="password" name="password" id="">
+			パスワード：<input type="password" name="password">
 		</p>
 		<input type="submit" value="ログイン">
 	</form>
