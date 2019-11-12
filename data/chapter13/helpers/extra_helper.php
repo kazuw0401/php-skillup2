@@ -23,3 +23,18 @@ function check_words($word, $length) {
         return TRUE;
     }
 }
+
+
+// メールアドレスの重複をチェック
+function email_exists($dbh, $email) {
+    $sql = "SELECT COUNT(id) FROM members where email = :email";
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+    $count = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($count['count(id)'] > 0) {
+        return TRUE;
+    }else {
+        return FALSE;
+    }
+}
