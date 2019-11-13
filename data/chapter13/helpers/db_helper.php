@@ -34,7 +34,7 @@ function insert_member_data($dbh, $name, $email, $password) {
 
 // メールアドレスとパスワードが一致した場合、会員データを配列で返す
 function select_member($dbh, $email, $password) {
-    $sql = 'SELECT * FROM members WHERE email = :email LIMIT 1';
+    $sql = "SELECT * FROM members WHERE email = :email LIMIT 1";
     $stmt = $dbh->prepare($sql);
     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->execute();

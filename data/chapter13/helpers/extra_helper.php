@@ -31,7 +31,7 @@ function email_exists($dbh, $email) {
     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
     $count = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($count['count(id)'] > 0) {
+    if($count['COUNT(id)'] > 0) {
         return TRUE;
     }else {
         return FALSE;
