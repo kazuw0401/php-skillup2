@@ -31,3 +31,20 @@ function insert_member_data($dbh, $name, $email, $password) {
         return FALSE;
     }
 }
+
+// メールアドレスとパスワードが一致した場合、会員データを配列で返す
+function select_member($dbh, $email, $password) {
+    $sql = 'SELECT * FROM members WHERE email = :email LIMIT 1';
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+    if($stmt->rowCount() > 0) {
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if(password_verify($password, $data['password'])) {
+            return $data;
+        }else {
+            return FALSE;
+        }
+        return FALSE;
+    }
+}

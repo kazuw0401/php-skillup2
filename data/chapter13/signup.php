@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errs['email'] = 'メールアドレスの形式が正しくありません。';
     }elseif(email_exists($dbh, $email)) {
         $errs['email'] = 'このメールアドレスはすでに登録されています。';
-    }elseif(!check_words($email, 100)) {
+    }elseif(!check_words($email, 200)) {
         $errs['email'] = 'メールアドレスは必須、100文字以内です。';
     }
 

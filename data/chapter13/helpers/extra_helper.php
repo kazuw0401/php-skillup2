@@ -24,7 +24,6 @@ function check_words($word, $length) {
     }
 }
 
-
 // メールアドレスの重複をチェック
 function email_exists($dbh, $email) {
     $sql = "SELECT COUNT(id) FROM members where email = :email";
