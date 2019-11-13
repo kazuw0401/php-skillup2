@@ -46,5 +46,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// ビューの読み込み
+// 新規登録画面の読み込み
 include_once('./views/signup_view.php');

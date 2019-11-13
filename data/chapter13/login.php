@@ -8,7 +8,7 @@ session_start();
 
 // ログイン済であればmember.phpへリダイレクト
 if(!empty($_SESSION['member'])) {
-    header('Location: '.SITE_URL.'member.php');
+    header('Location: '.SITE_URL.'/member.php');
     exit;
 }
 
@@ -46,5 +46,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// ビューの読み込み
+// ログイン画面の読み込み
 include_once('./views/login_view.php');
