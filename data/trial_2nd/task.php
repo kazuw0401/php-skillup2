@@ -1,5 +1,6 @@
 <?php
-
+// TODO: DB設定を書き出す
+require_once('config.php');
 
 // POSTされた値
 $id = $_POST['id'];

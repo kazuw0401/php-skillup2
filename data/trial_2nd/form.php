@@ -1,4 +1,13 @@
+<?php
+function set_token() {
+    $token = sha1(uniqid(mt_rand(), true));
+    $_SESSION['token'] = $token;
+    return $token;
+}
 
+session_start();
+$token = set_token();
+?>
 
 <!DOCTYPE html>
 <html lang="jp">
@@ -27,6 +36,8 @@
 		<p>
 			パスワード：<input type="password" name="password">
 		</p>
+		<!-- トークンを送信 -->
+		<input type="hidden" name="token" value="<?php echo $token; ?>">
 		<input type="submit" value="ログイン">
 	</form>
 </body>
