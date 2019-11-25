@@ -1,12 +1,17 @@
 <?php
-function set_token() {
-    $token = sha1(uniqid(mt_rand(), true));
-    $_SESSION['token'] = $token;
-    return $token;
-}
+// 設定ファイルの読み込み
+require_once('config.php');
 
 session_start();
-$token = set_token();
+
+
+// task.phpへリダイレクト
+if(!empty($_SESSION['member'])) {
+    header('Location: '.SITE_URL.'/task.php');
+    exit;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +30,7 @@ $token = set_token();
 		<p>
 			お名前：
 			<select name="id">
+			foreach 
 				<option value="0">社長</option>
 				<option value="1">鈴木さん（営業チーム）</option>
 				<option value="2">高橋さん（経理チーム）</option>

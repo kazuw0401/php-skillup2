@@ -1,6 +1,7 @@
 <?php
 // TODO: DB設定を書き出す
-require_once('config.php');
+$dsn = "mysql:host=db;dbname=sample;";
+$db = new PDO($dsn, 'user', 'userpass');
 
 // POSTされた値
 $id = $_POST['id'];
