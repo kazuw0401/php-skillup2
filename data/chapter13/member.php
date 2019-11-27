@@ -6,7 +6,7 @@ require_once('./helpers/extra_helper.php');
 
 session_start();
 
-// ログイン済であればmember.phpへリダイレクト
+// ログインしていなければlogin.phpへリダイレクト
 if(empty($_SESSION['member'])) {
     header('Location: '.SITE_URL.'login.php');
     exit;
