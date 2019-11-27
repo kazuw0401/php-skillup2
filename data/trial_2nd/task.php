@@ -3,6 +3,14 @@
 $dsn = "mysql:host=db;dbname=sample;";
 $db = new PDO($dsn, 'user', 'userpass');
 
+// taskのセッション情報がなければform.phpへリダイレクト
+if(empty($_SESSION['task'])) {
+    header('Location: '.SITE_URL.'form.php');
+    exit;
+}
+
+session_start();
+
 // POSTされた値
 $id = $_POST['id'];
 $password = $_POST['password'];
